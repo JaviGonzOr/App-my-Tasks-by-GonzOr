@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% block content %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/sandstone/bootstrap.min.css"
+    integrity="sha384-zEpdAL7W11eTKeoBJK1g79kgl9qjP7g84KfK3AZsuonx38n8ad+f5ZgXtoSDxPOh" crossorigin="anonymous">
+<h1 class="text-center">
+    {% load static %}
+    <img src="{% static 'index/img/logo2.png' %}" width="250" height="200">
+</h1>
+
+<div class="card text-center">
+    <h3 class="card-header" style="color: darkorange;">GRAFICO DE MODELOS</h3>
+    <div class="card-body">
+        <div class="table-responsive">
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'estilos.css' %}" type="text/css">
+        <section>
+            <table>
+                <th style="color: black;">Modelos</th>
+                <th style="color: black;">Cantidad</th>
+                {% for i in elementos %}
+                <tr class="table-primary">
+                    <td>- {{i.modelo}}</td>
+                    <td style="color: red;">{{i.cantidad}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            
+        </section>
+        
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js"></script>
+    </head>
+    <body>
+        <canvas id="myChart"></canvas>
+    </body>
+    <script>
+        var ctx= document.getElementById("myChart").getContext("2d");
+        var myChart= new Chart(ctx,{
+            type:"bar",
+            
+            data:{
+                labels:[{{modelos|safe}}],
+                datasets:[{
+                        label:'Num datos',
+                        data:[{{cantidades}}],
+
+                        backgroundColor:[
+                            'rgb(66, 134, 244,0.5)',
+                            'rgb(74, 135, 72,0.5)',
+                            'rgb(229, 89, 50,0.5)'
+                        ]
+                }]
+            },
+            options:{
+                scales:{
+                    yAxes:[{
+                            ticks:{
+                                beginAtZero:true
+                            }
+                    }]
+                }
+            }
+        });
+    </script>
+</html>
+{% endblock %}
+const labels = Utils.months({count: 7});
+const data = {
+  labels: labels,
+  datasets: [{
+    label: 'My First Dataset',
+    data: [65, 59, 80, 81, 56, 55, 40],
+    backgroundColor: [
+      'rgba(255, 99, 132, 0.2)',
+      'rgba(255, 159, 64, 0.2)',
+      'rgba(255, 205, 86, 0.2)',
+      'rgba(75, 192, 192, 0.2)',
+      'rgba(54, 162, 235, 0.2)',
+      'rgba(153, 102, 255, 0.2)',
+      'rgba(201, 203, 207, 0.2)'
+    ],
+    borderColor: [
+      'rgb(255, 99, 132)',
+      'rgb(255, 159, 64)',
+      'rgb(255, 205, 86)',
+      'rgb(75, 192, 192)',
+      'rgb(54, 162, 235)',
+      'rgb(153, 102, 255)',
+      'rgb(201, 203, 207)'
+    ],
+    borderWidth: 1
+  }]
+};

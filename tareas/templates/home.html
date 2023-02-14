@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/sandstone/bootstrap.min.css"
+    integrity="sha384-zEpdAL7W11eTKeoBJK1g79kgl9qjP7g84KfK3AZsuonx38n8ad+f5ZgXtoSDxPOh" crossorigin="anonymous">
+<main class='card card-body'>
+    <div>
+        {% if user.is_authenticated %}
+        <h3><a href="{% url 'tarea' %}" style="text-align: right; margin-right: 100px; color: rgb(0, 0, 0);">Bienvenido
+                <em style="color: rgb(237, 58, 58);">{{user.username}}</em></a></h3>
+        {% endif %}
+    </div>
+    <h1 class="text-center">
+
+        {% load static %}
+        <img src="{% static 'index/img/logo2.png' %}" width="200" height="150">
+    </h1>
+    <h2>
+        <p class="text-center text-danger">Planea, Gestiona y Sigue Todas las Tareas con un Software Flexible. Una
+            Nueva
+            Forma Eficiente y Transparente de Organizar Todas las Tareas de Tu Empresa.</p>
+        {% load static %}
+        <img src="{% static 'index/img/adela.jpg' %}" width="1100" height="680">
+    </h2>
+    {% load static %}
+    <h4><a href="https://www.instagram.com/xemeneiespou/" style="color: red;">Siguenos en
+            <img src="{% static 'index/img/insta.png' %}" width="30" height="30"></a>
+    </h4>
+</main>
+
+
+{% endblock %}

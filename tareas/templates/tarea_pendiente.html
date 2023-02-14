@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1 class="text-center">
+    {% load static %}
+    <img src="{% static 'index/img/logo2.png' %}" width="250" height="200">
+</h1>
+
+<div class="card">
+    <h3 class="card-header" style="color: darkorange;">TAREAS PENDIENTES</h3>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table">
+                <tr style="color: blue;">
+                    <th scope="col">Titulo</th>
+                    <th scope="col">Cliente</th>
+                    <th scope="col">Fabricante</th>
+                    <th scope="col">Modelo</th>
+                    <th scope="col">Montador</th>
+                    <th scope="col"></th>
+                    <br>
+                    <br>
+
+                    <a href="{% url 'vista_tarea' %}" class="btn btn-outline-warning">Ver Tareas</a>
+                    <br>
+                    <br>
+                        
+
+                </tr>
+
+                <tbody>
+                    <tr>
+                        {% for task in tarea %}
+
+                        {% if task.importante %}
+                        <td><a class="fw-bold text-danger">{{task.titulo}}</a>
+                        </td>
+                        <td class="fw-bold">{{task.cliente}}</td>
+                        <td class="fw-bold">{{task.proveedor}}</td>
+                        <td class="fw-bold">{{task.modelo}}
+                            <img src="{{task.archivos.last.imagen.url}}" height="100">
+                        </td>
+                        <td class="fw-bold">{{task.usuario.username}}</td>
+                        <td>
+                            <a name="" id="" class="btn btn-outline-success" href="{% url 'detalle_tarea' task.id %}"
+                                role="button">Editar</a>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        {% else %}
+                        <td><a class="fw-bold text-dark">{{task.titulo}}</a>
+                        </td>
+                        <td class="fw-bold">{{task.cliente}}</td>
+                        <td class="fw-bold">{{task.proveedor}}</td>
+                        <td>
+                            <img src="{{task.archivos.last.imagen.url}}" height="100">
+                        </td>
+                        <td class="fw-bold">{{task.usuario.username}}</td>
+                        <td>
+                            <a name="" id="" class="btn btn-outline-success" href="{% url 'detalle_tarea' task.id %}"
+                                role="button">Editar</a>
+                        </td>
+
+                        {% endif %}
+                    </tr>
+                    </body>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+            {% endblock %}
+        </div>
+
+    </div>
+</div>
